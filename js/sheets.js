@@ -106,35 +106,38 @@ export function formatDate(str) {
 // ─── Badge ────────────────────────────────────────────────────────
 
 export function badgeClass(cat) {
-  return { 'ワークショップ':'badge-workshop', 'イベント':'badge-event', 'マルシェ':'badge-marche' }[cat] ?? 'badge-other';
+  const color = { 'ワークショップ': 'teal', 'イベント': 'coral', 'マルシェ': 'yellow' }[cat] ?? 'orange';
+  return `badge badge-${color}`;
 }
 
 // ─── Card HTML ────────────────────────────────────────────────────
 
-export function renderEventCard(ev) {
+export function renderEventCard(ev, isPast = false) {
   const d    = formatDate(ev.date);
   const href = `event.html?id=${encodeURIComponent(ev.id)}`;
+  const bc   = badgeClass(ev.category);
   return `
-  <a href="${href}" class="event-card" aria-label="${esc(ev.title)}の詳細を見る">
-    <div class="event-card__header">
+  <a href="${href}" class="event-card${isPast ? ' event-card--past' : ''}" aria-label="${esc(ev.title)}の詳細を見る">
+    <div class="event-card__image">
+      ${ev.imageUrl ? `<img src="${esc(ev.imageUrl)}" alt="${esc(ev.title)}" loading="lazy">` : ''}
       <div class="event-card__date-block">
         <span class="month">${d.month}</span>
         <span class="day">${d.day}</span>
-        <span class="weekday">${d.weekday ? '（'+d.weekday+'）' : ''}</span>
       </div>
-      <span class="event-card__badge ${badgeClass(ev.category)}">${ev.category || 'お知らせ'}</span>
+      <div class="event-card__badges">
+        <span class="${bc}">${esc(ev.category || 'お知らせ')}</span>
+        ${isPast ? '<span class="badge badge-orange">終了</span>' : ''}
+      </div>
     </div>
     <div class="event-card__body">
-      ${ev.imageUrl ? `<div class="event-card__img"><img src="${esc(ev.imageUrl)}" alt="${esc(ev.title)}" loading="lazy"></div>` : ''}
       <h3 class="event-card__title">${esc(ev.title)}</h3>
+      ${ev.time ? `<span class="event-card__meta">${svgClock}<span>${esc(ev.time)}</span></span>` : ''}
+      ${ev.capacity ? `<span class="event-card__meta">${svgUsers}<span>定員 ${esc(ev.capacity)}</span></span>` : ''}
       <p class="event-card__desc">${esc(ev.description)}</p>
-      <div class="event-card__footer">
-        <div style="display:flex;flex-direction:column;gap:.3rem">
-          ${ev.time ? `<span class="event-card__meta">${svgClock}<span>${esc(ev.time)}</span></span>` : ''}
-          ${ev.capacity ? `<span class="event-card__meta">${svgUsers}<span>定員 ${esc(ev.capacity)}</span></span>` : ''}
-        </div>
-        <span class="event-card__link">詳しく見る ${svgArrow}</span>
-      </div>
+    </div>
+    <div class="event-card__footer">
+      <span class="event-card__price">参加費無料</span>
+      <span class="event-card__link">詳しく見る ${svgArrow}</span>
     </div>
   </a>`;
 }
@@ -143,17 +146,20 @@ export function renderReportCard(rep) {
   const d    = formatDate(rep.date);
   const href = `report.html?id=${encodeURIComponent(rep.id)}`;
   const img  = rep.images[0];
+  const bc   = badgeClass(rep.category);
   return `
   <a href="${href}" class="report-card" aria-label="${esc(rep.title)}を読む">
-    ${img ? `<div class="report-card__img"><img src="${esc(img)}" alt="${esc(rep.title)}" loading="lazy"></div>` : '<div class="report-card__img report-card__img--placeholder"></div>'}
+    <div class="report-card__image">
+      ${img ? `<img src="${esc(img)}" alt="${esc(rep.title)}" loading="lazy">` : ''}
+    </div>
     <div class="report-card__body">
       <div class="report-card__meta">
-        <span class="event-card__badge ${badgeClass(rep.category)}">${rep.category || 'レポート'}</span>
+        <span class="${bc}">${esc(rep.category || 'レポート')}</span>
         <span class="report-card__date">${d.full}</span>
       </div>
       <h3 class="report-card__title">${esc(rep.title)}</h3>
-      <p class="report-card__summary">${esc(rep.summary)}</p>
-      <span class="event-card__link" style="margin-top:.75rem">レポートを読む ${svgArrow}</span>
+      <p class="report-card__desc">${esc(rep.summary)}</p>
+      <span class="event-card__link" style="margin-top:.5rem">レポートを読む ${svgArrow}</span>
     </div>
   </a>`;
 }
@@ -177,7 +183,7 @@ function esc(s) {
 
 export function initFadeIn() {
   const ob = new IntersectionObserver(
-    es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ob.unobserve(e.target); } }),
+    es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); ob.unobserve(e.target); } }),
     { threshold: 0.1 }
   );
   document.querySelectorAll('.fade-in').forEach(el => ob.observe(el));
@@ -188,10 +194,14 @@ export function initMobileNav() {
   const drawer = document.getElementById('navDrawer');
   if (!btn || !drawer) return;
   btn.addEventListener('click', () => {
-    const open = drawer.classList.toggle('open');
+    const open = drawer.classList.toggle('is-open');
+    btn.classList.toggle('is-open', open);
     btn.setAttribute('aria-expanded', String(open));
   });
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    drawer.classList.remove('is-open');
+    btn.classList.remove('is-open');
+  }));
 }
 
 export function loadingHTML() {
