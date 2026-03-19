@@ -578,6 +578,8 @@ button {
   box-shadow: var(--shadow-md);
   overflow: hidden;
   display: flex;
+  text-decoration: none;
+  color: inherit;
   flex-direction: column;
   transition: transform .2s ease, box-shadow .2s ease;
 }
