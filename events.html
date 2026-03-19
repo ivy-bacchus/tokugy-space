@@ -22,9 +22,8 @@
     <nav class="nav__links" aria-label="メインナビゲーション">
       <a href="index.html">トップ</a>
       <a href="events.html" class="active">イベント</a>
-      <a href="index.html#about">スペースについて</a>
+      <a href="reports.html">開催レポート</a>
       <a href="index.html#access">アクセス</a>
-      <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy 本体</a>
       <a href="events.html" class="nav-cta">イベントを見る</a>
     </nav>
     <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
@@ -33,13 +32,11 @@
   </div>
 </header>
 
-<!-- Mobile drawer -->
-<nav class="nav__drawer" id="navDrawer" aria-label="モバイルナビゲーション">
+<nav class="nav__drawer" id="navDrawer">
   <a href="index.html">トップ</a>
-  <a href="events.html" class="active">イベント・ワークショップ</a>
-  <a href="index.html#about">スペースについて</a>
+  <a href="events.html" class="active">イベント</a>
+  <a href="reports.html">開催レポート</a>
   <a href="index.html#access">アクセス</a>
-  <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy 本体サイト</a>
   <a href="events.html" class="nav-cta">イベントを見る</a>
 </nav>
 
@@ -164,7 +161,7 @@
 </footer>
 
 <script type="module">
-  import { fetchEvents, isUpcoming, renderEventCard, initFadeIn, initMobileNav } from './js/sheets.js';
+  import { fetchEvents, isUpcoming, renderEventCard, initFadeIn, initMobileNav, loadingHTML, errorHTML } from './js/sheets.js';
 
   initFadeIn();
   initMobileNav();

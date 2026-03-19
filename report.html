@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開催レポート | tokugy space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-mark">ts</div>
+      <span class="nav__logo-text">tokugy <span>space</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">トップ</a>
+      <a href="events.html">イベント</a>
+      <a href="reports.html" class="active">開催レポート</a>
+      <a href="index.html#access">アクセス</a>
+      <a href="events.html" class="nav-cta">イベントを見る</a>
+    </nav>
+    <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="nav__drawer" id="navDrawer">
+  <a href="index.html">トップ</a>
+  <a href="events.html">イベント</a>
+  <a href="reports.html" class="active">開催レポート</a>
+  <a href="index.html#access">アクセス</a>
+  <a href="events.html" class="nav-cta">イベントを見る</a>
+</nav>
+
+<main id="main"></main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand-name">tokugy space</div>
+        <p class="footer__brand-desc">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
+      </div>
+      <div>
+        <div class="footer__col-title">メニュー</div>
+        <ul class="footer__links">
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="events.html">イベント</a></li>
+          <li><a href="reports.html">開催レポート</a></li>
+          <li><a href="index.html#access">アクセス</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">営業情報</div>
+        <div class="footer__info">
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            平日 10:00〜15:00
+          </div>
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            入場無料
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 tokugy space. Operated by <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { fetchReports, formatDate, badgeClass, initMobileNav } from './js/sheets.js';
+  initMobileNav();
+
+  const id   = new URLSearchParams(location.search).get('id');
+  const main = document.getElementById('main');
+
+  function svgIcon(path) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+  }
+
+  function gallery(images) {
+    if (!images.length) return '';
+    const n = images.length;
+    const cls = n === 1 ? '' : n === 2 ? 'detail-gallery--2' : 'detail-gallery--3';
+    return `<div class="detail-gallery ${cls}">
+      ${images.map(src => `<div class="detail-gallery__item"><img src="${src}" alt="開催の様子" loading="lazy"></div>`).join('')}
+    </div>`;
+  }
+
+  fetchReports().then(reports => {
+    const rep = reports.find(r => String(r.id) === String(id));
+    if (!rep) {
+      main.innerHTML = `<div class="container" style="padding:6rem 1.25rem;text-align:center"><p style="color:var(--gray-400)">レポートが見つかりませんでした。</p><a href="reports.html" class="btn btn-primary" style="margin-top:1.5rem;display:inline-flex">レポート一覧へ</a></div>`;
+      return;
+    }
+
+    const d = formatDate(rep.date);
+    document.title = `${rep.title} | tokugy space`;
+
+    main.innerHTML = `
+    <div class="detail-hero">
+      <div class="container">
+        <a href="reports.html" class="detail-hero__back">
+          ${svgIcon('<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>')}
+          開催レポート一覧へ戻る
+        </a>
+        <div class="detail-hero__badge-row">
+          <span class="event-card__badge ${badgeClass(rep.category)}">${rep.category || 'レポート'}</span>
+          <span class="event-card__badge badge-other">開催済み</span>
+        </div>
+        <h1 class="detail-hero__title">${rep.title}</h1>
+        <div class="detail-hero__meta">
+          <span class="detail-hero__meta-item">
+            ${svgIcon('<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>')}
+            開催日: ${d.full}
+          </span>
+        </div>
+      </div>
+      ${rep.images[0] ? `
+      <div class="container" style="padding-inline:1.25rem">
+        <div class="detail-hero__img">
+          <img src="${rep.images[0]}" alt="${rep.title}">
+        </div>
+      </div>` : ''}
+    </div>
+
+    <section class="detail-body">
+      <div style="max-width:760px;margin-inline:auto;padding:3rem 1.25rem 4rem">
+        <p style="font-size:1.1rem;font-weight:600;color:var(--navy);line-height:1.8;margin-bottom:2rem;padding:1.25rem 1.5rem;background:var(--yellow-light);border-left:4px solid var(--yellow);border-radius:0 var(--radius-sm) var(--radius-sm) 0">${rep.summary}</p>
+        <div style="font-size:1rem;line-height:2;color:var(--gray-600);white-space:pre-line;margin-bottom:2rem">${rep.body}</div>
+        ${gallery(rep.images.slice(1))}
+        <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--cream-dark);display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="events.html" class="btn btn-yellow">次のイベントを見る</a>
+          <a href="reports.html" class="btn btn-outline">レポート一覧へ</a>
+        </div>
+      </div>
+    </section>`;
+  }).catch(() => {
+    main.innerHTML = `<div class="container" style="padding:6rem 1.25rem;text-align:center"><p style="color:var(--gray-400)">データの読み込みに失敗しました。</p></div>`;
+  });
+</script>
+</body>
+</html>

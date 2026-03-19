@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>イベント詳細 | tokugy space</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-mark">ts</div>
+      <span class="nav__logo-text">tokugy <span>space</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">トップ</a>
+      <a href="events.html" class="active">イベント</a>
+      <a href="reports.html">開催レポート</a>
+      <a href="index.html#access">アクセス</a>
+      <a href="events.html" class="nav-cta">イベントを見る</a>
+    </nav>
+    <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="nav__drawer" id="navDrawer">
+  <a href="index.html">トップ</a>
+  <a href="events.html" class="active">イベント</a>
+  <a href="reports.html">開催レポート</a>
+  <a href="index.html#access">アクセス</a>
+  <a href="events.html" class="nav-cta">イベントを見る</a>
+</nav>
+
+<main id="main"></main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand-name">tokugy space</div>
+        <p class="footer__brand-desc">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
+      </div>
+      <div>
+        <div class="footer__col-title">メニュー</div>
+        <ul class="footer__links">
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="events.html">イベント</a></li>
+          <li><a href="reports.html">開催レポート</a></li>
+          <li><a href="index.html#access">アクセス</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">営業情報</div>
+        <div class="footer__info">
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            平日 10:00〜15:00
+          </div>
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            入場無料
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 tokugy space. Operated by <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { fetchEvents, formatDate, badgeClass, isUpcoming, initMobileNav, svgCalendar, svgPin } from './js/sheets.js';
+  initMobileNav();
+
+  const id   = new URLSearchParams(location.search).get('id');
+  const main = document.getElementById('main');
+
+  function svgIcon(path, extra='') {
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${extra}>${path}</svg>`;
+  }
+
+  fetchEvents().then(events => {
+    const ev = events.find(e => String(e.id) === String(id));
+    if (!ev) {
+      main.innerHTML = `<div class="container" style="padding:6rem 1.25rem;text-align:center"><p style="color:var(--gray-400)">イベントが見つかりませんでした。</p><a href="events.html" class="btn btn-primary" style="margin-top:1.5rem;display:inline-flex">イベント一覧へ</a></div>`;
+      return;
+    }
+
+    const d       = formatDate(ev.date);
+    const badge   = badgeClass(ev.category);
+    const past    = !isUpcoming(ev);
+    document.title = `${ev.title} | tokugy space`;
+
+    main.innerHTML = `
+    <div class="detail-hero">
+      <div class="container">
+        <a href="events.html" class="detail-hero__back">
+          ${svgIcon('<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>')}
+          イベント一覧へ戻る
+        </a>
+        <div class="detail-hero__badge-row">
+          <span class="event-card__badge ${badge}">${ev.category || 'イベント'}</span>
+          ${past ? '<span class="event-card__badge badge-other">終了</span>' : ''}
+        </div>
+        <h1 class="detail-hero__title">${ev.title}</h1>
+        <div class="detail-hero__meta">
+          <span class="detail-hero__meta-item">
+            ${svgIcon('<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>')}
+            ${d.full}
+          </span>
+          ${ev.time ? `<span class="detail-hero__meta-item">${svgIcon('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>')} ${ev.time}</span>` : ''}
+          ${ev.capacity ? `<span class="detail-hero__meta-item">${svgIcon('<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>')} 定員 ${ev.capacity}</span>` : ''}
+        </div>
+      </div>
+      <div class="container" style="padding-inline:1.25rem">
+        <div class="detail-hero__img${ev.imageUrl ? '' : ' detail-hero__img--placeholder'}">
+          ${ev.imageUrl
+            ? `<img src="${ev.imageUrl}" alt="${ev.title}">`
+            : `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><p>画像準備中</p>`}
+        </div>
+      </div>
+    </div>
+
+    <section class="detail-body">
+      <div class="detail-layout">
+        <article class="detail-article" style="padding:3rem 0 4rem">
+          <p>${ev.detail || ev.description}</p>
+          ${!past && (ev.regUrl || true) ? `
+          <div class="detail-cta">
+            ${ev.regUrl ? `<a href="${ev.regUrl}" target="_blank" rel="noopener" class="btn btn-yellow">申し込む</a>` : ''}
+            <a href="index.html#access" class="btn btn-outline">アクセスを確認する</a>
+          </div>` : ''}
+        </article>
+
+        <aside class="detail-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-card__title">開催情報</div>
+            <div class="sidebar-card__list">
+              <div class="sidebar-card__item">
+                ${svgIcon('<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>')}
+                <span>${d.full}</span>
+              </div>
+              ${ev.time ? `<div class="sidebar-card__item">${svgIcon('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>')}<span>${ev.time}</span></div>` : ''}
+              ${ev.capacity ? `<div class="sidebar-card__item">${svgIcon('<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>')}<span>定員 ${ev.capacity}</span></div>` : ''}
+              <div class="sidebar-card__item">${svgIcon('<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>')}<span>参加費 無料</span></div>
+              <div class="sidebar-card__item">${svgIcon('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>')}<span>tokugy space（白河市中心商店街）</span></div>
+            </div>
+          </div>
+          ${ev.regUrl ? `<a href="${ev.regUrl}" target="_blank" rel="noopener" class="btn btn-yellow" style="width:100%;justify-content:center">申し込む</a>` : ''}
+          <a href="events.html" class="btn btn-outline" style="width:100%;justify-content:center">イベント一覧へ</a>
+        </aside>
+      </div>
+    </section>`;
+  }).catch(() => {
+    main.innerHTML = `<div class="container" style="padding:6rem 1.25rem;text-align:center"><p style="color:var(--gray-400)">データの読み込みに失敗しました。</p></div>`;
+  });
+</script>
+</body>
+</html>

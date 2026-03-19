@@ -25,9 +25,8 @@
     <nav class="nav__links" aria-label="メインナビゲーション">
       <a href="index.html" class="active">トップ</a>
       <a href="events.html">イベント</a>
-      <a href="#about">スペースについて</a>
+      <a href="reports.html">開催レポート</a>
       <a href="#access">アクセス</a>
-      <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy 本体</a>
       <a href="events.html" class="nav-cta">イベントを見る</a>
     </nav>
     <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
@@ -335,7 +334,7 @@
 </footer>
 
 <script type="module">
-  import { fetchEvents, isUpcoming, renderEventCard, initFadeIn, initMobileNav } from './js/sheets.js';
+  import { fetchEvents, isUpcoming, renderEventCard, initFadeIn, initMobileNav, errorHTML } from './js/sheets.js';
 
   initFadeIn();
   initMobileNav();
@@ -351,9 +350,8 @@
         grid.innerHTML = upcoming.map(e => renderEventCard(e)).join('');
       }
     })
-    .catch(err => {
-      console.error(err);
-      grid.innerHTML = '<div class="events-error"><p>イベント情報の読み込みに失敗しました。<br>スプレッドシートの共有設定を確認してください。</p></div>';
+    .catch(() => {
+      grid.innerHTML = errorHTML('イベント情報の読み込みに失敗しました。');
     });
 </script>
 
