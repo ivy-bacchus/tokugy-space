@@ -7,36 +7,38 @@
   <meta name="description" content="tokugy spaceで開催したイベント・ワークショップの開催レポート一覧です。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="nav" role="banner">
-  <div class="container nav__inner">
-    <a href="index.html" class="nav__logo">
-      <div class="nav__logo-mark">ts</div>
-      <span class="nav__logo-text">tokugy <span>space</span></span>
-    </a>
-    <nav class="nav__links">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-mark">ts</span>
+        tokugy space
+      </a>
+      <nav class="nav__links">
+        <a href="index.html">トップ</a>
+        <a href="events.html">イベント</a>
+        <a href="reports.html" class="active">開催レポート</a>
+        <a href="index.html#access">アクセス</a>
+      </nav>
+      <a href="events.html" class="btn btn-primary nav__cta">イベントを見る</a>
+      <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav__drawer" id="navDrawer">
       <a href="index.html">トップ</a>
       <a href="events.html">イベント</a>
       <a href="reports.html" class="active">開催レポート</a>
       <a href="index.html#access">アクセス</a>
-      <a href="events.html" class="nav-cta">イベントを見る</a>
+      <a href="events.html" class="btn btn-primary">イベントを見る</a>
     </nav>
-    <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
-<nav class="nav__drawer" id="navDrawer">
-  <a href="index.html">トップ</a>
-  <a href="events.html">イベント</a>
-  <a href="reports.html" class="active">開催レポート</a>
-  <a href="index.html#access">アクセス</a>
-  <a href="events.html" class="nav-cta">イベントを見る</a>
-</nav>
 
 <div class="events-page-header">
   <div class="container">
@@ -50,7 +52,7 @@
   </div>
 </div>
 
-<main class="section" style="background:var(--cream)">
+<main class="section events-page">
   <div class="container">
     <div class="filter-tabs" id="filterTabs">
       <button class="filter-tab active" data-filter="all">すべて</button>
@@ -58,8 +60,8 @@
       <button class="filter-tab" data-filter="イベント">イベント</button>
       <button class="filter-tab" data-filter="マルシェ">マルシェ</button>
     </div>
-    <div class="events-grid" id="reportsGrid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="events-loading" style="grid-column:1/-1">
+    <div class="events-grid" id="reportsGrid">
+      <div class="events-loading">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
         <p>読み込み中...</p>
       </div>
@@ -77,13 +79,13 @@
 
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="footer__inner">
+    <div class="footer__grid">
       <div>
-        <div class="footer__brand-name">tokugy space</div>
-        <p class="footer__brand-desc">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
+        <p class="footer__brand">tokugy space</p>
+        <p class="footer__tagline">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
       </div>
       <div>
-        <div class="footer__col-title">メニュー</div>
+        <p class="footer__col-title">メニュー</p>
         <ul class="footer__links">
           <li><a href="index.html">トップ</a></li>
           <li><a href="events.html">イベント</a></li>
@@ -92,17 +94,12 @@
         </ul>
       </div>
       <div>
-        <div class="footer__col-title">営業情報</div>
-        <div class="footer__info">
-          <div class="footer__info-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            平日 10:00〜15:00
-          </div>
-          <div class="footer__info-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            入場無料
-          </div>
-        </div>
+        <p class="footer__col-title">営業情報</p>
+        <ul class="footer__links">
+          <li>平日 10:00〜15:00</li>
+          <li>福島県白河市（中心商店街内）</li>
+          <li>入場無料</li>
+        </ul>
       </div>
     </div>
     <div class="footer__bottom">
@@ -122,7 +119,7 @@
     const filtered = filter === 'all' ? all : all.filter(r => r.category === filter);
     grid.innerHTML = filtered.length > 0
       ? filtered.map(r => renderReportCard(r)).join('')
-      : `<div class="events-empty" style="grid-column:1/-1"><p>このカテゴリのレポートはありません</p></div>`;
+      : `<div class="events-empty"><p>このカテゴリのレポートはありません</p></div>`;
   }
 
   document.getElementById('filterTabs').addEventListener('click', e => {
@@ -135,7 +132,7 @@
 
   fetchReports()
     .then(reports => { all = reports; render('all'); })
-    .catch(() => { grid.innerHTML = `<div class="events-error" style="grid-column:1/-1"><p>データの読み込みに失敗しました。</p></div>`; });
+    .catch(() => { grid.innerHTML = `<div class="events-error"><p>データの読み込みに失敗しました。</p></div>`; });
 </script>
 </body>
 </html>

@@ -6,48 +6,50 @@
   <title>開催レポート | tokugy space</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="nav" role="banner">
-  <div class="container nav__inner">
-    <a href="index.html" class="nav__logo">
-      <div class="nav__logo-mark">ts</div>
-      <span class="nav__logo-text">tokugy <span>space</span></span>
-    </a>
-    <nav class="nav__links">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-mark">ts</span>
+        tokugy space
+      </a>
+      <nav class="nav__links">
+        <a href="index.html">トップ</a>
+        <a href="events.html">イベント</a>
+        <a href="reports.html" class="active">開催レポート</a>
+        <a href="index.html#access">アクセス</a>
+      </nav>
+      <a href="events.html" class="btn btn-primary nav__cta">イベントを見る</a>
+      <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav__drawer" id="navDrawer">
       <a href="index.html">トップ</a>
       <a href="events.html">イベント</a>
       <a href="reports.html" class="active">開催レポート</a>
       <a href="index.html#access">アクセス</a>
-      <a href="events.html" class="nav-cta">イベントを見る</a>
+      <a href="events.html" class="btn btn-primary">イベントを見る</a>
     </nav>
-    <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
-<nav class="nav__drawer" id="navDrawer">
-  <a href="index.html">トップ</a>
-  <a href="events.html">イベント</a>
-  <a href="reports.html" class="active">開催レポート</a>
-  <a href="index.html#access">アクセス</a>
-  <a href="events.html" class="nav-cta">イベントを見る</a>
-</nav>
 
 <main id="main"></main>
 
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="footer__inner">
+    <div class="footer__grid">
       <div>
-        <div class="footer__brand-name">tokugy space</div>
-        <p class="footer__brand-desc">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
+        <p class="footer__brand">tokugy space</p>
+        <p class="footer__tagline">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
       </div>
       <div>
-        <div class="footer__col-title">メニュー</div>
+        <p class="footer__col-title">メニュー</p>
         <ul class="footer__links">
           <li><a href="index.html">トップ</a></li>
           <li><a href="events.html">イベント</a></li>
@@ -56,17 +58,12 @@
         </ul>
       </div>
       <div>
-        <div class="footer__col-title">営業情報</div>
-        <div class="footer__info">
-          <div class="footer__info-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            平日 10:00〜15:00
-          </div>
-          <div class="footer__info-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            入場無料
-          </div>
-        </div>
+        <p class="footer__col-title">営業情報</p>
+        <ul class="footer__links">
+          <li>平日 10:00〜15:00</li>
+          <li>福島県白河市（中心商店街内）</li>
+          <li>入場無料</li>
+        </ul>
       </div>
     </div>
     <div class="footer__bottom">
@@ -102,7 +99,8 @@
       return;
     }
 
-    const d = formatDate(rep.date);
+    const d  = formatDate(rep.date);
+    const bc = badgeClass(rep.category);
     document.title = `${rep.title} | tokugy space`;
 
     main.innerHTML = `
@@ -113,8 +111,8 @@
           開催レポート一覧へ戻る
         </a>
         <div class="detail-hero__badge-row">
-          <span class="event-card__badge ${badgeClass(rep.category)}">${rep.category || 'レポート'}</span>
-          <span class="event-card__badge badge-other">開催済み</span>
+          <span class="${bc}">${rep.category || 'レポート'}</span>
+          <span class="badge badge-orange">開催済み</span>
         </div>
         <h1 class="detail-hero__title">${rep.title}</h1>
         <div class="detail-hero__meta">
@@ -123,21 +121,19 @@
             開催日: ${d.full}
           </span>
         </div>
-      </div>
-      ${rep.images[0] ? `
-      <div class="container" style="padding-inline:1.25rem">
+        ${rep.images[0] ? `
         <div class="detail-hero__img">
           <img src="${rep.images[0]}" alt="${rep.title}">
-        </div>
-      </div>` : ''}
+        </div>` : ''}
+      </div>
     </div>
 
-    <section class="detail-body">
-      <div style="max-width:760px;margin-inline:auto;padding:3rem 1.25rem 4rem">
-        <p style="font-size:1.1rem;font-weight:600;color:var(--navy);line-height:1.8;margin-bottom:2rem;padding:1.25rem 1.5rem;background:var(--yellow-light);border-left:4px solid var(--yellow);border-radius:0 var(--radius-sm) var(--radius-sm) 0">${rep.summary}</p>
+    <section class="section" style="background:var(--cream)">
+      <div class="container" style="max-width:760px">
+        <p style="font-size:1.05rem;font-weight:700;color:var(--navy);line-height:1.8;margin-bottom:2rem;padding:1.25rem 1.5rem;background:var(--yellow-light);border-left:4px solid var(--yellow);border-radius:0 var(--radius-sm) var(--radius-sm) 0">${rep.summary}</p>
         <div style="font-size:1rem;line-height:2;color:var(--gray-600);white-space:pre-line;margin-bottom:2rem">${rep.body}</div>
         ${gallery(rep.images.slice(1))}
-        <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--cream-dark);display:flex;gap:1rem;flex-wrap:wrap">
+        <div class="detail-cta">
           <a href="events.html" class="btn btn-yellow">次のイベントを見る</a>
           <a href="reports.html" class="btn btn-outline">レポート一覧へ</a>
         </div>
