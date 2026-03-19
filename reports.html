@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開催レポート | tokugy space</title>
+  <meta name="description" content="tokugy spaceで開催したイベント・ワークショップの開催レポート一覧です。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-mark">ts</div>
+      <span class="nav__logo-text">tokugy <span>space</span></span>
+    </a>
+    <nav class="nav__links">
+      <a href="index.html">トップ</a>
+      <a href="events.html">イベント</a>
+      <a href="reports.html" class="active">開催レポート</a>
+      <a href="index.html#access">アクセス</a>
+      <a href="events.html" class="nav-cta">イベントを見る</a>
+    </nav>
+    <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="nav__drawer" id="navDrawer">
+  <a href="index.html">トップ</a>
+  <a href="events.html">イベント</a>
+  <a href="reports.html" class="active">開催レポート</a>
+  <a href="index.html#access">アクセス</a>
+  <a href="events.html" class="nav-cta">イベントを見る</a>
+</nav>
+
+<div class="events-page-header">
+  <div class="container">
+    <a href="index.html" style="font-size:.85rem;color:var(--gray-400);display:inline-flex;align-items:center;gap:.3rem;margin-bottom:1.5rem">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      トップへ戻る
+    </a>
+    <span class="section-label">Event Reports</span>
+    <h1 class="section-title" style="margin-top:.5rem">開催レポート</h1>
+    <p class="section-sub">過去に開催したイベント・ワークショップの様子をご紹介します。</p>
+  </div>
+</div>
+
+<main class="section" style="background:var(--cream)">
+  <div class="container">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-filter="all">すべて</button>
+      <button class="filter-tab" data-filter="ワークショップ">ワークショップ</button>
+      <button class="filter-tab" data-filter="イベント">イベント</button>
+      <button class="filter-tab" data-filter="マルシェ">マルシェ</button>
+    </div>
+    <div class="events-grid" id="reportsGrid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="events-loading" style="grid-column:1/-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+        <p>読み込み中...</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section style="background:linear-gradient(135deg,#FBC922,#F39800);padding:3.5rem 0">
+  <div class="container" style="text-align:center">
+    <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.75rem">次のイベントもお楽しみに</h2>
+    <p style="color:rgba(16,34,38,.7);margin-bottom:1.75rem;font-size:.95rem">今後のイベント・ワークショップはこちらからご確認いただけます。</p>
+    <a href="events.html" class="btn btn-primary">イベント一覧を見る</a>
+  </div>
+</section>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand-name">tokugy space</div>
+        <p class="footer__brand-desc">障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。</p>
+      </div>
+      <div>
+        <div class="footer__col-title">メニュー</div>
+        <ul class="footer__links">
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="events.html">イベント</a></li>
+          <li><a href="reports.html">開催レポート</a></li>
+          <li><a href="index.html#access">アクセス</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">営業情報</div>
+        <div class="footer__info">
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            平日 10:00〜15:00
+          </div>
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            入場無料
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 tokugy space. Operated by <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { fetchReports, renderReportCard, initFadeIn, initMobileNav } from './js/sheets.js';
+  initFadeIn(); initMobileNav();
+
+  let all = [];
+  const grid = document.getElementById('reportsGrid');
+
+  function render(filter) {
+    const filtered = filter === 'all' ? all : all.filter(r => r.category === filter);
+    grid.innerHTML = filtered.length > 0
+      ? filtered.map(r => renderReportCard(r)).join('')
+      : `<div class="events-empty" style="grid-column:1/-1"><p>このカテゴリのレポートはありません</p></div>`;
+  }
+
+  document.getElementById('filterTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-tab');
+    if (!btn) return;
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(btn.dataset.filter);
+  });
+
+  fetchReports()
+    .then(reports => { all = reports; render('all'); })
+    .catch(() => { grid.innerHTML = `<div class="events-error" style="grid-column:1/-1"><p>データの読み込みに失敗しました。</p></div>`; });
+</script>
+</body>
+</html>
