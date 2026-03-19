@@ -20,7 +20,9 @@ export async function fetchEvents() {
   const text = await res.text();
 
   // gviz response: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
-  const json = JSON.parse(text.replace(/^.*?setResponse\(/, '').replace(/\);?\s*$/, ''));
+  const start = text.indexOf('setResponse(') + 'setResponse('.length;
+  const end   = text.lastIndexOf(')');
+  const json  = JSON.parse(text.slice(start, end));
 
   if (json.status !== 'ok') throw new Error('Sheets API error: ' + json.errors?.[0]?.message);
 
