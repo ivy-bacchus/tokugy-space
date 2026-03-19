@@ -490,54 +490,105 @@ button {
   border: var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease;
+  /* overflow:hidden を外して吹き出しがはみ出せるようにする */
+  transition: transform .25s ease, box-shadow .25s ease;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-/* 背景番号 */
+/* 付箋テープ */
 .feature-card::before {
+  content: '';
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 22px;
+  border-radius: 3px;
+  border: 1.5px solid rgba(16,34,38,.18);
+  opacity: .85;
+  z-index: 2;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+
+/* 背景番号 */
+.feature-card::after {
   content: attr(data-num);
   position: absolute;
-  top: -.1em;
-  right: .3rem;
-  font-size: 7rem;
+  top: -.05em;
+  right: .4rem;
+  font-size: 6.5rem;
   font-weight: 900;
   line-height: 1;
-  color: rgba(16,34,38,.07);
+  color: rgba(16,34,38,.06);
   pointer-events: none;
   user-select: none;
   letter-spacing: -.05em;
+  z-index: 0;
 }
 
 .feature-card:hover {
-  transform: translate(-4px, -4px) rotate(0deg);
   box-shadow: var(--shadow-hover);
 }
 
-/* カードごとの背景色・傾き */
+/* カードごとの背景色・テープ色・傾き */
 .feature-card--yellow {
-  background: #FFFAE8;
-  border-top: 5px solid var(--col-yellow);
-  transform: rotate(-1.2deg);
+  background: #FFFBE8;
+  transform: rotate(-1.3deg);
 }
-.feature-card--yellow:hover { transform: translate(-4px,-4px) rotate(-1.2deg); }
+.feature-card--yellow::before { background: rgba(252,201,25,.55); }
+.feature-card--yellow:hover   { transform: translate(-4px,-5px) rotate(-1.3deg); }
 
 .feature-card--orange {
-  background: #FFF4E6;
-  border-top: 5px solid var(--col-orange);
-  transform: rotate(0.8deg);
+  background: #FFF5E8;
+  transform: rotate(0.9deg);
 }
-.feature-card--orange:hover { transform: translate(-4px,-4px) rotate(0.8deg); }
+.feature-card--orange::before { background: rgba(255,140,0,.4); }
+.feature-card--orange:hover   { transform: translate(-4px,-5px) rotate(0.9deg); }
 
 .feature-card--teal {
-  background: #E8FAF9;
-  border-top: 5px solid var(--col-teal);
-  transform: rotate(-0.5deg);
+  background: #EAFAF9;
+  transform: rotate(-0.6deg);
 }
-.feature-card--teal:hover { transform: translate(-4px,-4px) rotate(-0.5deg); }
+.feature-card--teal::before { background: rgba(76,201,192,.45); }
+.feature-card--teal:hover   { transform: translate(-4px,-5px) rotate(-0.6deg); }
+
+/* ── 吹き出し ── */
+.feature-card__bubble {
+  position: absolute;
+  bottom: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--col-navy);
+  color: var(--col-white);
+  padding: .55rem 1rem;
+  border-radius: var(--radius-sm);
+  border: var(--border);
+  box-shadow: 3px 3px 0 rgba(16,34,38,.18);
+  font-size: .8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 20;
+}
+/* 吹き出しの三角 */
+.feature-card__bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: var(--col-navy);
+}
+.feature-card:hover .feature-card__bubble {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 .feature-card__illust {
   aspect-ratio: 4/3;
