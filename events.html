@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>イベント・ワークショップ | tokugy space</title>
+  <meta name="description" content="tokugy space のイベント・ワークショップ一覧。コーヒー教室、手芸、マルシェなど多彩なイベントを開催しています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ==================== NAV ==================== -->
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__logo" aria-label="tokugy space トップへ">
+      <div class="nav__logo-mark">ts</div>
+      <span class="nav__logo-text">tokugy <span>space</span></span>
+    </a>
+    <nav class="nav__links" aria-label="メインナビゲーション">
+      <a href="index.html">トップ</a>
+      <a href="events.html" class="active">イベント</a>
+      <a href="index.html#about">スペースについて</a>
+      <a href="index.html#access">アクセス</a>
+      <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy 本体</a>
+      <a href="events.html" class="nav-cta">イベントを見る</a>
+    </nav>
+    <button class="nav__hamburger" id="navHamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="navDrawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<nav class="nav__drawer" id="navDrawer" aria-label="モバイルナビゲーション">
+  <a href="index.html">トップ</a>
+  <a href="events.html" class="active">イベント・ワークショップ</a>
+  <a href="index.html#about">スペースについて</a>
+  <a href="index.html#access">アクセス</a>
+  <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy 本体サイト</a>
+  <a href="events.html" class="nav-cta">イベントを見る</a>
+</nav>
+
+<!-- ==================== PAGE HEADER ==================== -->
+<div class="events-page-header" role="banner" aria-label="ページヘッダー">
+  <div class="container">
+    <div style="margin-bottom:.5rem">
+      <a href="index.html" style="font-size:.85rem;color:var(--gray-400);display:inline-flex;align-items:center;gap:.3rem;margin-bottom:1.5rem">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        トップへ戻る
+      </a>
+    </div>
+    <span class="section-label">Events &amp; Workshops</span>
+    <h1 class="section-title" style="margin-top:.5rem;font-size:clamp(1.8rem,4vw,2.8rem)">
+      イベント・ワークショップ
+    </h1>
+    <p class="section-sub">
+      コーヒーの淹れ方、手芸、マルシェなど——体験型コンテンツを定期開催。<br>
+      初心者でも、おひとりでも、お気軽にどうぞ。
+    </p>
+  </div>
+</div>
+
+<!-- ==================== EVENTS MAIN ==================== -->
+<main class="section events-page" id="main-content">
+  <div class="container">
+
+    <!-- Filter tabs -->
+    <div class="filter-tabs" role="group" aria-label="カテゴリフィルター" id="filterTabs">
+      <button class="filter-tab active" data-filter="all">すべて</button>
+      <button class="filter-tab" data-filter="ワークショップ">ワークショップ</button>
+      <button class="filter-tab" data-filter="イベント">イベント</button>
+      <button class="filter-tab" data-filter="マルシェ">マルシェ</button>
+    </div>
+
+    <!-- Upcoming -->
+    <div id="upcomingSection">
+      <div class="events-section-title">
+        <span>今後のイベント</span>
+      </div>
+      <div class="events-grid" id="upcomingGrid">
+        <div class="events-loading">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
+          <p>読み込み中...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Past (hidden until events are loaded) -->
+    <div id="pastSection" style="margin-top:4rem;display:none">
+      <div class="events-section-title" style="color:var(--gray-400)">
+        <span>過去のイベント</span>
+      </div>
+      <div class="events-grid past-grid" id="pastGrid"></div>
+    </div>
+
+    <!-- All-empty state -->
+    <div id="emptyState" style="display:none;text-align:center;padding:4rem 0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1rem;color:var(--gray-200)"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <p style="color:var(--gray-400);font-size:1rem">このカテゴリのイベントはありません</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ==================== CTA BANNER ==================== -->
+<section style="background:linear-gradient(135deg,#FBC922,#F39800);padding:3.5rem 0" aria-label="更新案内">
+  <div class="container" style="text-align:center">
+    <h2 style="font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:.75rem">
+      イベント情報は随時更新中
+    </h2>
+    <p style="color:rgba(16,34,38,.7);margin-bottom:1.75rem;font-size:.95rem">
+      新しいワークショップやイベントが決まり次第、こちらのページでご案内します。<br>
+      お気軽にスペースまで立ち寄ってみてください。
+    </p>
+    <a href="index.html#access" class="btn btn-primary">アクセス・営業情報を見る</a>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand-name">tokugy space</div>
+        <p class="footer__brand-desc">
+          障がいの有無に関わらず、誰もが気軽に立ち寄れる白河市の地域交流スペース。ハンドメイド作品の販売・ワークショップ・地域イベントを開催しています。
+        </p>
+      </div>
+      <div>
+        <div class="footer__col-title">メニュー</div>
+        <ul class="footer__links">
+          <li><a href="index.html">トップ</a></li>
+          <li><a href="events.html">イベント・ワークショップ</a></li>
+          <li><a href="index.html#about">スペースについて</a></li>
+          <li><a href="index.html#access">アクセス</a></li>
+          <li><a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy 本体サイト</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">営業情報</div>
+        <div class="footer__info">
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            平日 10:00〜15:00
+          </div>
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            福島県白河市（中心商店街内）
+          </div>
+          <div class="footer__info-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            入場無料
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 tokugy space. Operated by <a href="https://tokugy.com/" target="_blank" rel="noopener">tokugy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { fetchEvents, isUpcoming, renderEventCard, initFadeIn, initMobileNav } from './js/sheets.js';
+
+  initFadeIn();
+  initMobileNav();
+
+  let allEvents = [];
+  let currentFilter = 'all';
+
+  const upcomingGrid = document.getElementById('upcomingGrid');
+  const pastGrid     = document.getElementById('pastGrid');
+  const pastSection  = document.getElementById('pastSection');
+  const emptyState   = document.getElementById('emptyState');
+
+  function render(filter) {
+    const filtered = filter === 'all' ? allEvents : allEvents.filter(e => e.category === filter);
+    const upcoming = filtered.filter(isUpcoming).sort((a, b) => a.date.localeCompare(b.date));
+    const past     = filtered.filter(e => !isUpcoming(e)).sort((a, b) => b.date.localeCompare(a.date));
+
+    if (upcoming.length === 0 && past.length === 0) {
+      upcomingGrid.innerHTML = '';
+      pastSection.style.display = 'none';
+      emptyState.style.display = 'block';
+    } else {
+      emptyState.style.display = 'none';
+      upcomingGrid.innerHTML = upcoming.length > 0
+        ? upcoming.map(e => renderEventCard(e, false)).join('')
+        : '<div class="events-empty"><p>近日のイベントはありません</p></div>';
+
+      if (past.length > 0) {
+        pastGrid.innerHTML = past.map(e => renderEventCard(e, true)).join('');
+        pastSection.style.display = 'block';
+      } else {
+        pastSection.style.display = 'none';
+      }
+    }
+  }
+
+  // Filter tabs
+  document.getElementById('filterTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-tab');
+    if (!btn) return;
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    render(currentFilter);
+  });
+
+  // Load events
+  fetchEvents()
+    .then(events => {
+      allEvents = events;
+      render(currentFilter);
+    })
+    .catch(err => {
+      console.error(err);
+      upcomingGrid.innerHTML = `
+        <div class="events-error" style="grid-column:1/-1">
+          <p>イベント情報の読み込みに失敗しました。<br>
+          スプレッドシートを「リンクを知っている全員が閲覧可能」に設定してください。</p>
+        </div>`;
+    });
+</script>
+
+</body>
+</html>
