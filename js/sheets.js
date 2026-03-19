@@ -30,16 +30,18 @@ export async function fetchEvents() {
   return rows
     .map(row => {
       const cells = row.c || [];
-      const get = i => cells[i]?.v ?? cells[i]?.f ?? '';
+      const getV = i => cells[i]?.v ?? null;
+      const getF = i => cells[i]?.f ?? null;
+      const getStr = i => getF(i) ?? getV(i) ?? '';
       return {
-        title:           get(0),
-        date:            get(1),   // "2026/04/05"
-        time:            get(2),
-        category:        get(3),
-        description:     get(4),
-        capacity:        get(5),
-        registrationUrl: get(6),
-        published:       String(get(7)).toUpperCase() === 'TRUE',
+        title:           getStr(0),
+        date:            getF(1) ?? getV(1) ?? '',  // prefer formatted "2026/04/05" over "Date(2026,3,5)"
+        time:            getStr(2),
+        category:        getStr(3),
+        description:     getStr(4),
+        capacity:        getStr(5),
+        registrationUrl: getStr(6),
+        published:       getV(7) === true || String(getV(7)).toUpperCase() === 'TRUE',
       };
     })
     .filter(e => e.published && e.title);
@@ -49,9 +51,14 @@ export async function fetchEvents() {
 
 export function parseDate(dateStr) {
   if (!dateStr) return null;
-  // handle "2026/04/05" or "2026-04-05"
-  const [y, m, d] = String(dateStr).split(/[\/\-]/).map(Number);
-  return new Date(y, m - 1, d);
+  const s = String(dateStr);
+  // gviz Date format: "Date(2026,3,5)" — month is 0-indexed
+  const gviz = s.match(/^Date\((\d+),(\d+),(\d+)\)$/);
+  if (gviz) return new Date(Number(gviz[1]), Number(gviz[2]), Number(gviz[3]));
+  // "2026/04/05" or "2026-04-05"
+  const parts = s.split(/[\/\-]/).map(Number);
+  if (parts.length === 3 && !isNaN(parts[0])) return new Date(parts[0], parts[1] - 1, parts[2]);
+  return null;
 }
 
 export function isUpcoming(event) {
