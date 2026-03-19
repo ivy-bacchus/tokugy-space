@@ -487,7 +487,6 @@ button {
 }
 
 .feature-card {
-  background: var(--col-white);
   border: var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -495,16 +494,50 @@ button {
   transition: transform .2s ease, box-shadow .2s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* 背景番号 */
+.feature-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -.1em;
+  right: .3rem;
+  font-size: 7rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(16,34,38,.07);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -.05em;
 }
 
 .feature-card:hover {
-  transform: translate(-3px, -3px);
+  transform: translate(-4px, -4px) rotate(0deg);
   box-shadow: var(--shadow-hover);
 }
 
-.feature-card--yellow  { border-top: 4px solid var(--col-yellow); }
-.feature-card--orange  { border-top: 4px solid var(--col-orange); }
-.feature-card--teal    { border-top: 4px solid var(--col-teal);   }
+/* カードごとの背景色・傾き */
+.feature-card--yellow {
+  background: #FFFAE8;
+  border-top: 5px solid var(--col-yellow);
+  transform: rotate(-1.2deg);
+}
+.feature-card--yellow:hover { transform: translate(-4px,-4px) rotate(-1.2deg); }
+
+.feature-card--orange {
+  background: #FFF4E6;
+  border-top: 5px solid var(--col-orange);
+  transform: rotate(0.8deg);
+}
+.feature-card--orange:hover { transform: translate(-4px,-4px) rotate(0.8deg); }
+
+.feature-card--teal {
+  background: #E8FAF9;
+  border-top: 5px solid var(--col-teal);
+  transform: rotate(-0.5deg);
+}
+.feature-card--teal:hover { transform: translate(-4px,-4px) rotate(-0.5deg); }
 
 .feature-card__illust {
   aspect-ratio: 4/3;
