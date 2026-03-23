@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tokugy space パンフレット</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #ccc5b8;
+      padding: 48px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .page-label {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 2px;
+      font-family: monospace;
+      margin-bottom: -48px;
+    }
+
+    /* A5: 148mm × 210mm → 559px × 794px at 96dpi */
+    .page {
+      width: 559px;
+      height: 794px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.28);
+      flex-shrink: 0;
+      background-color: #FFFBF0;
+      background-image: radial-gradient(#D4C4A0 1.5px, transparent 1.5px);
+      background-size: 16px 16px;
+    }
+
+
+    /* ════════════════════════════════════
+       面1: 表紙
+       ════════════════════════════════════ */
+    .p1 {
+      background-color: #FFFBF0;
+      background-image: radial-gradient(#E5C231 1.5px, transparent 1.5px);
+      background-size: 14px 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deco-shape {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .deco-1 { width: 40px; height: 40px; border: 3px solid #E5C231; top: 100px; right: 250px; }
+    .deco-2 { width: 14px; height: 14px; background: #E5C231; top: 60px; right: 40px; }
+    .deco-3 { width: 28px; height: 28px; background: #B88A00; bottom: 150px; left: 240px; border-radius: 6px; transform: rotate(15deg); }
+    .deco-4 { width: 80px; height: 80px; border: 2px dashed #D4C4A0; bottom: 70px; left: -30px; }
+    .deco-5 { width: 10px; height: 10px; background: #2C2C2C; top: 220px; left: 270px; }
+
+    .p1-stripe { height: 9px; background: #E5C231; flex-shrink: 0; }
+
+    .p1-body {
+      flex: 1;
+      display: flex;
+    }
+
+    /* 左: テキスト */
+    .p1-left {
+      width: 290px;
+      flex-shrink: 0;
+      padding: 28px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .p1-logo {
+      font-size: 44px;
+      font-weight: 900;
+      color: #2C2C2C;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .p1-logo .spc { color: #E5C231; }
+
+    .p1-logo-en {
+      font-size: 10px;
+      color: #bbb;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .p1-catch {
+      font-size: 22px;
+      font-weight: 700;
+      color: #2C2C2C;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .p1-catch em {
+      font-style: normal;
+      color: #B88A00;
+      border-bottom: 3px solid #E5C231;
+      padding-bottom: 1px;
+    }
+
+    .p1-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .p1-tag {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13px;
+      color: #3C3020;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .p1-tag-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #E5C231;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* 右: イラスト */
+    .p1-right {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 18px;
+      overflow: hidden;
+    }
+    .p1-illust-blob {
+      position: absolute;
+      width: 220px; height: 220px;
+      background: #E5C231;
+      border-radius: 50%;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.28;
+    }
+    .p1-illust {
+      position: relative;
+      width: 250px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      margin-bottom: 30px;
+      z-index: 1;
+    }
+
+    /* フッター */
+    .p1-footer {
+      background: #2C2C2C;
+      padding: 18px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .p1-addr { font-size: 11px; color: #bbb; line-height: 2; }
+    .p1-hours { text-align: right; }
+    .p1-hours .lbl { font-size: 9px; letter-spacing: 2px; color: #E5C231; }
+    .p1-hours .time { font-size: 16px; font-weight: 700; color: #fff; }
+    .p1-hours .note { font-size: 10px; color: #999; margin-top: 1px; }
+
+
+    /* ════════════════════════════════════
+       面2: フリースペース
+       ════════════════════════════════════ */
+    .p2 { background-color: transparent; display: flex; flex-direction: column; }
+
+    .p2-head {
+      background: #E5C231;
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.25) 12px, rgba(255,255,255,0.25) 24px);
+      padding: 22px 26px 18px;
+      flex-shrink: 0;
+    }
+    .p2-num { font-size: 10px; letter-spacing: 3px; color: #7a6500; font-weight: 700; margin-bottom: 6px; }
+    .p2-head h2 { font-size: 27px; font-weight: 900; color: #2C2C2C; line-height: 1.4; }
+
+    .p2-body {
+      flex: 1;
+      padding: 20px 26px 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p2-lead {
+      font-size: 17px;
+      font-weight: 700;
+      color: #2C2C2C;
+      line-height: 1.75;
+      margin-bottom: 7px;
+    }
+    .p2-sub {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .p2-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .p2-illust { width: 162px; flex-shrink: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+    .p2-list {
+      flex: 1;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+    .p2-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.65;
+    }
+    .p2-ck {
+      width: 21px; height: 21px;
+      background: #E5C231;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 900; color: #2C2C2C;
+      margin-top: 1px;
+    }
+
+    .p2-info {
+      background: #F5EDD8;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 16px;
+    }
+    .p2-info h3 { font-size: 10px; letter-spacing: 3px; color: #8a7200; font-weight: 700; margin-bottom: 10px; }
+    .p2-grid {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 5px 0;
+      font-size: 13px;
+    }
+    .p2-grid .lbl { color: #999; font-size: 11.5px; }
+    .p2-grid .val { color: #2C2C2C; font-weight: 600; }
+
+    .p2-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2C2C2C;
+      color: #E5C231;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 32px;
+      align-self: flex-start;
+    }
+
+
+    /* ════════════════════════════════════
+       面3: ワークショップ・物販
+       ════════════════════════════════════ */
+    .p3 { background-color: transparent; position: relative; }
+
+    .p3-tag {
+      display: inline-block;
+      background: #2C2C2C;
+      color: #E5C231;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 3px;
+      padding: 3px 11px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
+
+    .p3-ws { padding: 22px 26px 0; }
+    .p3-ws h2 { font-size: 22px; font-weight: 900; color: #2C2C2C; line-height: 1.4; margin-bottom: 13px; }
+
+    .p3-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .p3-tile {
+      position: relative;
+      height: 152px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .p3-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .p3-tile-lbl {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 22px 10px 9px;
+      color: #fff;
+      font-size: 12px; font-weight: 700;
+    }
+
+    .p3-note {
+      font-size: 11px;
+      color: #999;
+      line-height: 1.75;
+    }
+
+    .p3-div {
+      border: none;
+      border-top: 2px dashed #D4C4A0;
+      margin: 16px 26px;
+    }
+
+    .p3-shop { padding: 0 26px; }
+    .p3-shop h2 { font-size: 22px; font-weight: 900; color: #2C2C2C; line-height: 1.4; margin-bottom: 12px; }
+
+    .p3-shop-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 9px;
+    }
+    .p3-shop-tile {
+      height: 158px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .p3-shop-tile img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+    .p3-shop-tile-lbl {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.65));
+      padding: 20px 10px 8px;
+      color: #fff; font-size: 11px; font-weight: 700;
+    }
+
+    .p3-shop-note {
+      font-size: 11.5px;
+      color: #666;
+      line-height: 1.75;
+    }
+
+    .p3-sns {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: #F5EDD8;
+      padding: 12px 26px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .p3-sns-txt { flex: 1; }
+    .p3-sns-txt strong { font-size: 13px; color: #2C2C2C; display: block; margin-bottom: 2px; }
+    .p3-sns-txt p { font-size: 11px; color: #666; line-height: 1.7; }
+    .p3-qr {
+      width: 54px; height: 54px;
+      border: 2px solid #C4B490;
+      border-radius: 6px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7.5px; color: #bbb;
+      text-align: center; flex-shrink: 0;
+    }
+
+
+    /* ════════════════════════════════════
+       面4: 裏表紙
+       ════════════════════════════════════ */
+    .p4 { background: #2C2C2C; display: flex; flex-direction: column; }
+
+    .p4-access {
+      background: #E5C231;
+      padding: 20px 26px 17px;
+      flex-shrink: 0;
+    }
+    .p4-access h2 { font-size: 12px; font-weight: 900; color: #2C2C2C; letter-spacing: 3px; margin-bottom: 11px; }
+    .p4-map {
+      width: 100%; height: 152px;
+      background: #D4B800;
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 5px; font-size: 12px; color: #7a6600; font-weight: 500;
+    }
+    .p4-map .ico { font-size: 28px; }
+    .p4-addr { margin-top: 10px; font-size: 12px; color: #2C2C2C; line-height: 2; }
+
+    .p4-body {
+      flex: 1;
+      padding: 20px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .p4-about h3 { font-size: 10px; letter-spacing: 3px; color: #E5C231; font-weight: 700; margin-bottom: 10px; }
+    .p4-about p { font-size: 12.5px; color: #bbb; line-height: 2; }
+
+    .p4-strip {
+      display: flex; gap: 4px;
+      height: 86px;
+      border-radius: 6px; overflow: hidden;
+    }
+    .p4-strip-ph { flex: 1; overflow: hidden; }
+    .p4-strip-ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .p4-contacts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .p4-ct h4 { font-size: 9.5px; letter-spacing: 2px; color: #E5C231; font-weight: 700; margin-bottom: 6px; }
+    .p4-ct p { font-size: 12px; color: #ddd; line-height: 1.9; }
+
+    .p4-bottom {
+      padding: 12px 26px;
+      border-top: 1px solid #404040;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .p4-copy { font-size: 9px; color: #555; letter-spacing: 1px; }
+    .p4-logo { font-size: 15px; font-weight: 900; color: #E5C231; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════
+     面1: 表紙
+════════════════════════ -->
+<p class="page-label">面1 — 表紙</p>
+<div class="page p1">
+  <div class="p1-stripe"></div>
+  <div class="deco-shape deco-1"></div>
+  <div class="deco-shape deco-2"></div>
+  <div class="deco-shape deco-3"></div>
+  <div class="deco-shape deco-4"></div>
+  <div class="deco-shape deco-5"></div>
+  <div class="p1-body">
+    <div class="p1-left">
+      <div class="p1-logo">tokugy <span class="spc">space</span></div>
+      <div class="p1-logo-en">SHIRAKAWA COMMUNITY SPACE</div>
+      <p class="p1-catch">ふらっと来て、<br><em>ほっとできる</em><br>みんなの場所。</p>
+      <div class="p1-tags">
+        <div class="p1-tag"><div class="p1-tag-dot"></div>どなたでも無料でご利用いただけます</div>
+        <div class="p1-tag"><div class="p1-tag-dot"></div>ワークショップ・季節イベント開催中</div>
+        <div class="p1-tag"><div class="p1-tag-dot"></div>ハンドメイド作品・駄菓子の販売</div>
+        <div class="p1-tag"><div class="p1-tag-dot"></div>子ども・高齢者・障がいのある方も歓迎</div>
+      </div>
+    </div>
+    <div class="p1-right">
+      <div class="p1-illust-blob"></div>
+      <img class="p1-illust" src="images/cover-illust-new.png" alt="みんながつながる場所">
+    </div>
+  </div>
+  <div class="p1-footer">
+    <div class="p1-addr">
+      福島県白河市中心市街地（商店街内）<br>
+      運営：就労継続支援B型事業所 tokugy
+    </div>
+    <div class="p1-hours">
+      <div class="lbl">OPEN</div>
+      <div class="time">10:00 〜 15:00</div>
+      <div class="note">平日のみ ／ 基本利用料 無料</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════
+     面2: フリースペース
+════════════════════════ -->
+<p class="page-label">面2 — フリースペース案内</p>
+<div class="page p2">
+  <div class="p2-head">
+    <div class="p2-num">01 FREE SPACE</div>
+    <h2>だれでも使える、<br>ただいまの場所。</h2>
+  </div>
+  <div class="p2-body">
+    <p class="p2-lead">「ちょっと休憩したい」「話し相手がほしい」<br>そんな気持ちで来てください。</p>
+    <p class="p2-sub">
+      tokugy space は障がいの有無に関わらず、誰でも気軽に立ち寄れる<br>
+      フリースペースです。予約不要・入場無料でご利用いただけます。
+    </p>
+    <div class="p2-feature">
+      <img class="p2-illust" src="images/feature-space-new.png" alt="スペース外観">
+      <ul class="p2-list">
+        <li><span class="p2-ck">✓</span><span>お茶を飲みながらひと休み。ゆっくり過ごせます</span></li>
+        <li><span class="p2-ck">✓</span><span>子どもから高齢者まで、世代を超えて集まれます</span></li>
+        <li><span class="p2-ck">✓</span><span>手仕事・読書・おしゃべり。使い方は自由です</span></li>
+        <li><span class="p2-ck">✓</span><span>地域の出会いと交流が生まれる場所です</span></li>
+      </ul>
+    </div>
+    <div class="p2-info">
+      <h3>INFORMATION</h3>
+      <div class="p2-grid">
+        <span class="lbl">営業日</span><span class="val">平日（月〜金）</span>
+        <span class="lbl">時間</span><span class="val">10:00 〜 15:00</span>
+        <span class="lbl">利用料</span><span class="val">無料</span>
+        <span class="lbl">予約</span><span class="val">不要</span>
+      </div>
+    </div>
+    <div class="p2-badge">&#x1F389; 基本利用料 すべて無料</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════
+     面3: ワークショップ・物販
+════════════════════════ -->
+<p class="page-label">面3 — ワークショップ・物販</p>
+<div class="page p3">
+  <div class="p3-ws">
+    <span class="p3-tag">02 WORKSHOP</span>
+    <h2>体験・発見・つながる<br>ワークショップ開催中</h2>
+    <div class="p3-tiles">
+      <div class="p3-tile">
+        <img src="images/photo-craft-new.png" alt="手芸・ものづくり">
+        <div class="p3-tile-lbl">&#x1F9F5; 手芸・ものづくり</div>
+      </div>
+      <div class="p3-tile">
+        <img src="images/photo-coffee.jpg" alt="コーヒーの淹れ方">
+        <div class="p3-tile-lbl">&#x2615; コーヒーの淹れ方</div>
+      </div>
+    </div>
+    <p class="p3-note">他にも季節のイベントや体験ワークショップを随時開催。※有料・要予約のものもあります。詳しくはInstagramや店頭でご確認ください。</p>
+  </div>
+
+  <hr class="p3-div">
+
+  <div class="p3-shop">
+    <span class="p3-tag">03 SHOP</span>
+    <h2>手しごとの作品を<br>販売しています</h2>
+    <div class="p3-shop-tiles">
+      <div class="p3-shop-tile">
+        <img src="images/photo-shop2.jpg" alt="陶器・うつわ">
+        <div class="p3-shop-tile-lbl">陶器・うつわ</div>
+      </div>
+      <div class="p3-shop-tile">
+        <img src="images/photo-shop1.jpg" alt="アクセサリー・雑貨">
+        <div class="p3-shop-tile-lbl">アクセサリー・雑貨</div>
+      </div>
+    </div>
+    <p class="p3-shop-note">他施設さんの委託作品・駄菓子・日用品もあります。</p>
+  </div>
+
+  <div class="p3-sns">
+    <div class="p3-sns-txt">
+      <strong>@tokugy_space</strong>
+      <p>最新のワークショップ情報はInstagramで！<br>フォローしてお知らせをチェック</p>
+    </div>
+    <div class="p3-qr">QR<br>コード</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════
+     面4: 裏表紙
+════════════════════════ -->
+<p class="page-label">面4 — 裏表紙</p>
+<div class="page p4">
+  <div class="p4-access">
+    <h2>ACCESS</h2>
+    <div class="p4-map">
+      <span class="ico">&#x1F5FA;</span>
+      地図を挿入（Googleマップ等）
+    </div>
+    <p class="p4-addr">
+      &#x1F4CD; 福島県白河市中心市街地（商店街内）<br>
+      &#x1F697; 白河駅より徒歩約10分　&#x1F17F; 駐車場あり
+    </p>
+  </div>
+
+  <div class="p4-body">
+    <div class="p4-about">
+      <h3>ABOUT TOKUGY</h3>
+      <p>
+        就労継続支援B型事業所「tokugy」は、障がいのある方が<br>
+        自分のペースで働き、社会とつながれる場所です。<br>
+        tokugy space は、その活動を地域へひらく拠点として<br>
+        白河市の商店街に誕生しました。
+      </p>
+    </div>
+    <div class="p4-strip">
+      <div class="p4-strip-ph"><img src="images/photo-pottery-hands.jpg" alt="陶芸制作"></div>
+      <div class="p4-strip-ph"><img src="images/photo-pottery-work1.jpg" alt="陶芸作品"></div>
+      <div class="p4-strip-ph"><img src="images/photo-shop2.jpg" alt="うつわ販売"></div>
+    </div>
+    <div class="p4-contacts">
+      <div class="p4-ct">
+        <h4>CONTACT</h4>
+        <p>TEL: 0248-XX-XXXX<br>MAIL: info@tokugy.com</p>
+      </div>
+      <div class="p4-ct">
+        <h4>WEB &amp; SNS</h4>
+        <p>Web: tokugy.com<br>Instagram: @tokugy_space</p>
+      </div>
+      <div class="p4-ct">
+        <h4>OPEN</h4>
+        <p>月〜金 10:00〜15:00<br>土日祝・年末年始 休み</p>
+      </div>
+      <div class="p4-ct">
+        <h4>ADMISSION</h4>
+        <p>入場無料<br>予約不要でお越しください</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p4-bottom">
+    <p class="p4-copy">© 2025 tokugy All Rights Reserved.</p>
+    <div class="p4-logo">tokugy space</div>
+  </div>
+</div>
+
+</body>
+</html>
