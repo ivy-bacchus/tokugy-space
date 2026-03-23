@@ -34,8 +34,8 @@
       overflow: hidden;
       box-shadow: 0 8px 40px rgba(0,0,0,0.28);
       flex-shrink: 0;
-      background-color: #FFFBF0;
-      background-image: radial-gradient(#D4C4A0 1.5px, transparent 1.5px);
+      background-color: #FFFDF7;
+      background-image: radial-gradient(#FFE082 1.5px, transparent 1.5px);
       background-size: 16px 16px;
     }
 
@@ -44,8 +44,8 @@
        面1: 表紙
        ════════════════════════════════════ */
     .p1 {
-      background-color: #FFFBF0;
-      background-image: radial-gradient(#E5C231 1.5px, transparent 1.5px);
+      background-color: #FFFDF7;
+      background-image: radial-gradient(#FFCA28 1.5px, transparent 1.5px);
       background-size: 14px 14px;
       display: flex;
       flex-direction: column;
@@ -56,13 +56,13 @@
       border-radius: 50%;
       z-index: 0;
     }
-    .deco-1 { width: 40px; height: 40px; border: 3px solid #E5C231; top: 100px; right: 250px; }
-    .deco-2 { width: 14px; height: 14px; background: #E5C231; top: 60px; right: 40px; }
-    .deco-3 { width: 28px; height: 28px; background: #B88A00; bottom: 150px; left: 240px; border-radius: 6px; transform: rotate(15deg); }
-    .deco-4 { width: 80px; height: 80px; border: 2px dashed #D4C4A0; bottom: 70px; left: -30px; }
-    .deco-5 { width: 10px; height: 10px; background: #2C2C2C; top: 220px; left: 270px; }
+    .deco-1 { width: 40px; height: 40px; border: 3px solid #FFCA28; top: 100px; right: 250px; }
+    .deco-2 { width: 14px; height: 14px; background: #FFCA28; top: 60px; right: 40px; }
+    .deco-3 { width: 28px; height: 28px; background: #FF7043; bottom: 150px; left: 240px; border-radius: 6px; transform: rotate(15deg); }
+    .deco-4 { width: 80px; height: 80px; border: 2px dashed #FFE082; bottom: 70px; left: -30px; }
+    .deco-5 { width: 10px; height: 10px; background: #6D4C41; top: 220px; left: 270px; }
 
-    .p1-stripe { height: 9px; background: #E5C231; flex-shrink: 0; }
+    .p1-stripe { height: 9px; background: #FFCA28; flex-shrink: 0; }
 
     .p1-body {
       flex: 1;
@@ -82,12 +82,12 @@
     .p1-logo {
       font-size: 44px;
       font-weight: 900;
-      color: #2C2C2C;
+      color: #6D4C41;
       letter-spacing: -1.5px;
       line-height: 1;
       margin-bottom: 3px;
     }
-    .p1-logo .spc { color: #E5C231; }
+    .p1-logo .spc { color: #FFCA28; }
 
     .p1-logo-en {
       font-size: 10px;
@@ -99,14 +99,14 @@
     .p1-catch {
       font-size: 22px;
       font-weight: 700;
-      color: #2C2C2C;
+      color: #6D4C41;
       line-height: 1.75;
       margin-bottom: 24px;
     }
     .p1-catch em {
       font-style: normal;
-      color: #B88A00;
-      border-bottom: 3px solid #E5C231;
+      color: #FF7043;
+      border-bottom: 3px solid #FFCA28;
       padding-bottom: 1px;
     }
 
@@ -128,7 +128,7 @@
     .p1-tag-dot {
       width: 9px; height: 9px;
       border-radius: 50%;
-      background: #E5C231;
+      background: #FFCA28;
       flex-shrink: 0;
       margin-top: 4px;
     }
@@ -145,26 +145,28 @@
     }
     .p1-illust-blob {
       position: absolute;
-      width: 220px; height: 220px;
-      background: #E5C231;
+      width: 260px; height: 260px;
+      background: #FFCA28;
       border-radius: 50%;
-      bottom: 24px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.28;
+      transform: translate(-50%, -50%);
+      opacity: 0.35;
     }
-    .p1-illust {
-      position: relative;
-      width: 250px;
+    .spot-illust {
+      position: absolute;
       border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-      margin-bottom: 30px;
-      z-index: 1;
+      box-shadow: 0 4px 14px rgba(109,76,65,0.15);
+      z-index: 2;
+      background: #fff;
     }
+    .spot-1 { width: 160px; top: 10%; right: 20px; transform: rotate(4deg); }
+    .spot-2 { width: 140px; bottom: 15%; left: -30px; transform: rotate(-3deg); z-index: 3; }
+    .spot-3 { width: 110px; top: 45%; right: 10px; transform: rotate(6deg); }
 
     /* フッター */
     .p1-footer {
-      background: #2C2C2C;
+      background: #6D4C41;
       padding: 18px 26px;
       display: flex;
       justify-content: space-between;
@@ -173,7 +175,7 @@
     }
     .p1-addr { font-size: 11px; color: #bbb; line-height: 2; }
     .p1-hours { text-align: right; }
-    .p1-hours .lbl { font-size: 9px; letter-spacing: 2px; color: #E5C231; }
+    .p1-hours .lbl { font-size: 9px; letter-spacing: 2px; color: #FFCA28; }
     .p1-hours .time { font-size: 16px; font-weight: 700; color: #fff; }
     .p1-hours .note { font-size: 10px; color: #999; margin-top: 1px; }
 
@@ -184,13 +186,13 @@
     .p2 { background-color: transparent; display: flex; flex-direction: column; }
 
     .p2-head {
-      background: #E5C231;
+      background: #FFCA28;
       background-image: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255,255,255,0.25) 12px, rgba(255,255,255,0.25) 24px);
       padding: 22px 26px 18px;
       flex-shrink: 0;
     }
     .p2-num { font-size: 10px; letter-spacing: 3px; color: #7a6500; font-weight: 700; margin-bottom: 6px; }
-    .p2-head h2 { font-size: 27px; font-weight: 900; color: #2C2C2C; line-height: 1.4; }
+    .p2-head h2 { font-size: 27px; font-weight: 900; color: #6D4C41; line-height: 1.4; }
 
     .p2-body {
       flex: 1;
@@ -202,7 +204,7 @@
     .p2-lead {
       font-size: 17px;
       font-weight: 700;
-      color: #2C2C2C;
+      color: #6D4C41;
       line-height: 1.75;
       margin-bottom: 7px;
     }
@@ -239,11 +241,11 @@
     }
     .p2-ck {
       width: 21px; height: 21px;
-      background: #E5C231;
+      background: #FFCA28;
       border-radius: 50%;
       flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 900; color: #2C2C2C;
+      font-size: 11px; font-weight: 900; color: #6D4C41;
       margin-top: 1px;
     }
 
@@ -261,14 +263,14 @@
       font-size: 13px;
     }
     .p2-grid .lbl { color: #999; font-size: 11.5px; }
-    .p2-grid .val { color: #2C2C2C; font-weight: 600; }
+    .p2-grid .val { color: #6D4C41; font-weight: 600; }
 
     .p2-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #2C2C2C;
-      color: #E5C231;
+      background: #6D4C41;
+      color: #FFCA28;
       font-size: 14px;
       font-weight: 700;
       padding: 10px 24px;
@@ -284,8 +286,8 @@
 
     .p3-tag {
       display: inline-block;
-      background: #2C2C2C;
-      color: #E5C231;
+      background: #6D4C41;
+      color: #FFCA28;
       font-size: 9px; font-weight: 700;
       letter-spacing: 3px;
       padding: 3px 11px;
@@ -294,7 +296,7 @@
     }
 
     .p3-ws { padding: 22px 26px 0; }
-    .p3-ws h2 { font-size: 22px; font-weight: 900; color: #2C2C2C; line-height: 1.4; margin-bottom: 13px; }
+    .p3-ws h2 { font-size: 22px; font-weight: 900; color: #6D4C41; line-height: 1.4; margin-bottom: 13px; }
 
     .p3-tiles {
       display: grid;
@@ -311,10 +313,11 @@
     .p3-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .p3-tile-lbl {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
-      padding: 22px 10px 9px;
-      color: #fff;
+      background: rgba(109,76,65,0.85); /* #6D4C41 */
+      padding: 12px 10px 10px;
+      color: #FFCA28;
       font-size: 12px; font-weight: 700;
+      text-align: center;
     }
 
     .p3-note {
@@ -325,12 +328,12 @@
 
     .p3-div {
       border: none;
-      border-top: 2px dashed #D4C4A0;
+      border-top: 2px dashed #FFE082;
       margin: 16px 26px;
     }
 
     .p3-shop { padding: 0 26px; }
-    .p3-shop h2 { font-size: 22px; font-weight: 900; color: #2C2C2C; line-height: 1.4; margin-bottom: 12px; }
+    .p3-shop h2 { font-size: 22px; font-weight: 900; color: #6D4C41; line-height: 1.4; margin-bottom: 12px; }
 
     .p3-shop-tiles {
       display: grid;
@@ -371,7 +374,7 @@
       gap: 14px;
     }
     .p3-sns-txt { flex: 1; }
-    .p3-sns-txt strong { font-size: 13px; color: #2C2C2C; display: block; margin-bottom: 2px; }
+    .p3-sns-txt strong { font-size: 13px; color: #6D4C41; display: block; margin-bottom: 2px; }
     .p3-sns-txt p { font-size: 11px; color: #666; line-height: 1.7; }
     .p3-qr {
       width: 54px; height: 54px;
@@ -386,14 +389,14 @@
     /* ════════════════════════════════════
        面4: 裏表紙
        ════════════════════════════════════ */
-    .p4 { background: #2C2C2C; display: flex; flex-direction: column; }
+    .p4 { background: #6D4C41; display: flex; flex-direction: column; }
 
     .p4-access {
-      background: #E5C231;
+      background: #FFCA28;
       padding: 20px 26px 17px;
       flex-shrink: 0;
     }
-    .p4-access h2 { font-size: 12px; font-weight: 900; color: #2C2C2C; letter-spacing: 3px; margin-bottom: 11px; }
+    .p4-access h2 { font-size: 12px; font-weight: 900; color: #6D4C41; letter-spacing: 3px; margin-bottom: 11px; }
     .p4-map {
       width: 100%; height: 152px;
       background: #D4B800;
@@ -403,7 +406,7 @@
       gap: 5px; font-size: 12px; color: #7a6600; font-weight: 500;
     }
     .p4-map .ico { font-size: 28px; }
-    .p4-addr { margin-top: 10px; font-size: 12px; color: #2C2C2C; line-height: 2; }
+    .p4-addr { margin-top: 10px; font-size: 12px; color: #6D4C41; line-height: 2; }
 
     .p4-body {
       flex: 1;
@@ -413,7 +416,7 @@
       gap: 18px;
     }
 
-    .p4-about h3 { font-size: 10px; letter-spacing: 3px; color: #E5C231; font-weight: 700; margin-bottom: 10px; }
+    .p4-about h3 { font-size: 10px; letter-spacing: 3px; color: #FFCA28; font-weight: 700; margin-bottom: 10px; }
     .p4-about p { font-size: 12.5px; color: #bbb; line-height: 2; }
 
     .p4-strip {
@@ -429,7 +432,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
-    .p4-ct h4 { font-size: 9.5px; letter-spacing: 2px; color: #E5C231; font-weight: 700; margin-bottom: 6px; }
+    .p4-ct h4 { font-size: 9.5px; letter-spacing: 2px; color: #FFCA28; font-weight: 700; margin-bottom: 6px; }
     .p4-ct p { font-size: 12px; color: #ddd; line-height: 1.9; }
 
     .p4-bottom {
@@ -441,7 +444,7 @@
       flex-shrink: 0;
     }
     .p4-copy { font-size: 9px; color: #555; letter-spacing: 1px; }
-    .p4-logo { font-size: 15px; font-weight: 900; color: #E5C231; }
+    .p4-logo { font-size: 15px; font-weight: 900; color: #FFCA28; }
   </style>
 </head>
 <body>
@@ -471,7 +474,9 @@
     </div>
     <div class="p1-right">
       <div class="p1-illust-blob"></div>
-      <img class="p1-illust" src="images/cover-illust-new.png" alt="みんながつながる場所">
+      <img class="spot-illust spot-1" src="images/person-woman.png" alt="女性">
+      <img class="spot-illust spot-2" src="images/person-child.png" alt="子ども">
+      <img class="spot-illust spot-3" src="images/item-coffee.png" alt="コーヒー">
     </div>
   </div>
   <div class="p1-footer">
@@ -504,7 +509,7 @@
       フリースペースです。予約不要・入場無料でご利用いただけます。
     </p>
     <div class="p2-feature">
-      <img class="p2-illust" src="images/feature-space-new.png" alt="スペース外観">
+      <img class="p2-illust" src="images/person-grandma.png" alt="おばあちゃん" style="background:#fff; object-fit:contain; padding:10px;">
       <ul class="p2-list">
         <li><span class="p2-ck">✓</span><span>お茶を飲みながらひと休み。ゆっくり過ごせます</span></li>
         <li><span class="p2-ck">✓</span><span>子どもから高齢者まで、世代を超えて集まれます</span></li>
@@ -536,12 +541,12 @@
     <h2>体験・発見・つながる<br>ワークショップ開催中</h2>
     <div class="p3-tiles">
       <div class="p3-tile">
-        <img src="images/photo-craft-new.png" alt="手芸・ものづくり">
-        <div class="p3-tile-lbl">&#x1F9F5; 手芸・ものづくり</div>
+        <img src="images/person-staff.png" alt="ワークショップ" style="background:#fff; object-fit:contain; padding:10px;">
+        <div class="p3-tile-lbl">&#x1F9F5; ワークショップ</div>
       </div>
       <div class="p3-tile">
-        <img src="images/photo-coffee.jpg" alt="コーヒーの淹れ方">
-        <div class="p3-tile-lbl">&#x2615; コーヒーの淹れ方</div>
+        <img src="images/item-pottery.png" alt="手芸・ものづくり" style="background:#fff; object-fit:contain; padding:10px;">
+        <div class="p3-tile-lbl">&#x1F3F7;&#xFE0F; 手しごと作品</div>
       </div>
     </div>
     <p class="p3-note">他にも季節のイベントや体験ワークショップを随時開催。※有料・要予約のものもあります。詳しくはInstagramや店頭でご確認ください。</p>
