@@ -155,14 +155,23 @@
     }
     .spot-illust {
       position: absolute;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(109,76,65,0.15);
-      z-index: 2;
-      background: #fff;
+      z-index: 5;
+      mix-blend-mode: multiply;
     }
     .spot-1 { width: 160px; top: 10%; right: 20px; transform: rotate(4deg); }
     .spot-2 { width: 140px; bottom: 15%; left: -30px; transform: rotate(-3deg); z-index: 3; }
     .spot-3 { width: 110px; top: 45%; right: 10px; transform: rotate(6deg); }
+    .spot-4 { width: 140px; top: -10px; right: -20px; transform: rotate(-5deg); pointer-events: none; }
+    .spot-5 { width: 120px; top: 24%; right: -10px; transform: rotate(8deg); pointer-events: none; }
+    .spot-6 { width: 100px; bottom: 18%; left: -20px; transform: rotate(-10deg); pointer-events: none; }
+
+    .deco-6 { width: 30px; height: 30px; border: 4px solid #FF7043; border-radius: 4px; top: 80px; left: 400px; transform: rotate(45deg); }
+    .deco-7 { width: 12px; height: 12px; background: #FFCA28; top: 120px; left: 450px; }
+    .deco-8 { width: 100px; height: 100px; border: 2px dashed #FFE082; top: -30px; right: -30px; }
+    .deco-9 { width: 16px; height: 16px; background: #FFE082; bottom: 120px; left: 20px; transform: rotate(15deg); }
+    .deco-10{ width: 40px; height: 40px; border: 3px solid #FFCA28; bottom: 80px; right: 30px; border-radius: 50%; opacity: 0.5; }
+    .deco-11{ width: 8px; height: 8px; background: #FF7043; bottom: 40px; right: 80px; opacity: 0.5; }
+    .deco-12{ width: 60px; height: 6px; background: #FFCA28; top: 20px; left: 20px; border-radius: 3px; transform: rotate(-10deg); }
 
     /* フッター */
     .p1-footer {
@@ -497,7 +506,11 @@
      面2: フリースペース
 ════════════════════════ -->
 <p class="page-label">面2 — フリースペース案内</p>
-<div class="page p2">
+<div class="page p2" style="position:relative;">
+  <div class="deco-shape deco-6"></div>
+  <div class="deco-shape deco-7"></div>
+  <div class="deco-shape deco-12"></div>
+  <img class="spot-illust spot-4" src="images/person-grandma.png" alt="おばあちゃん">
   <div class="p2-head">
     <div class="p2-num">01 FREE SPACE</div>
     <h2>だれでも使える、<br>ただいまの場所。</h2>
@@ -509,7 +522,7 @@
       フリースペースです。予約不要・入場無料でご利用いただけます。
     </p>
     <div class="p2-feature">
-      <img class="p2-illust" src="images/person-grandma.png" alt="おばあちゃん" style="background:#fff; object-fit:contain; padding:10px;">
+      <img class="p2-illust" src="images/feature-space.png" alt="スペース外観">
       <ul class="p2-list">
         <li><span class="p2-ck">✓</span><span>お茶を飲みながらひと休み。ゆっくり過ごせます</span></li>
         <li><span class="p2-ck">✓</span><span>子どもから高齢者まで、世代を超えて集まれます</span></li>
@@ -535,18 +548,22 @@
      面3: ワークショップ・物販
 ════════════════════════ -->
 <p class="page-label">面3 — ワークショップ・物販</p>
-<div class="page p3">
+<div class="page p3" style="position:relative;">
+  <div class="deco-shape deco-8"></div>
+  <div class="deco-shape deco-9"></div>
+  <img class="spot-illust spot-5" src="images/person-staff.png" alt="スタッフ">
+  <img class="spot-illust spot-6" src="images/item-pottery.png" alt="手芸作品">
   <div class="p3-ws">
     <span class="p3-tag">02 WORKSHOP</span>
     <h2>体験・発見・つながる<br>ワークショップ開催中</h2>
     <div class="p3-tiles">
       <div class="p3-tile">
-        <img src="images/person-staff.png" alt="ワークショップ" style="background:#fff; object-fit:contain; padding:10px;">
-        <div class="p3-tile-lbl">&#x1F9F5; ワークショップ</div>
+        <img src="images/photo-coffee.jpg" alt="コーヒーの淹れ方">
+        <div class="p3-tile-lbl">&#x2615; コーヒーの淹れ方</div>
       </div>
       <div class="p3-tile">
-        <img src="images/item-pottery.png" alt="手芸・ものづくり" style="background:#fff; object-fit:contain; padding:10px;">
-        <div class="p3-tile-lbl">&#x1F3F7;&#xFE0F; 手しごと作品</div>
+        <img src="images/photo-craft1.jpg" alt="手芸・ものづくり">
+        <div class="p3-tile-lbl">&#x1F9F5; 手芸・ものづくり</div>
       </div>
     </div>
     <p class="p3-note">他にも季節のイベントや体験ワークショップを随時開催。※有料・要予約のものもあります。詳しくはInstagramや店頭でご確認ください。</p>
@@ -584,7 +601,9 @@
      面4: 裏表紙
 ════════════════════════ -->
 <p class="page-label">面4 — 裏表紙</p>
-<div class="page p4">
+<div class="page p4" style="position:relative;">
+  <div class="deco-shape deco-10"></div>
+  <div class="deco-shape deco-11"></div>
   <div class="p4-access">
     <h2>ACCESS</h2>
     <div class="p4-map">
